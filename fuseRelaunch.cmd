@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -o "C:/.Xilinx/uart_test/UART_RX_isim_beh.exe" -prj "C:/.Xilinx/uart_test/UART_RX_beh.prj" "work.UART_RX" 

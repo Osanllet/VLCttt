@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\.Xilinx\uart_test\UART_RX.ncd
+OUTFILE=C:\.Xilinx\uart_test\UART_RX.bit
+FAMILY=Spartan3E
+PART=xc3s500e-5fg320
+WORKINGDIR=C:\.Xilinx\uart_test
+LICENSE=WebPack
+USER_INFO=211325141_0_0_139
