@@ -1,6 +1,6 @@
 V3 3
-FL C:/.Xilinx/uart_test/UART_TX.vhd 2017/09/18.00:04:04 P.20131013
-EN work/UART_RX 1505711047 FL C:/.Xilinx/uart_test/UART_TX.vhd \
+FL C:/.Xilinx/uart_test/UART_TX.vhd 2017/09/19.00:24:26 P.20131013
+EN work/UART_RX 1505798668 FL C:/.Xilinx/uart_test/UART_TX.vhd \
       PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
-AR work/UART_RX/rtl 1505711048 \
-      FL C:/.Xilinx/uart_test/UART_TX.vhd EN work/UART_RX 1505711047
+AR work/UART_RX/rtl 1505798669 \
+      FL C:/.Xilinx/uart_test/UART_TX.vhd EN work/UART_RX 1505798668

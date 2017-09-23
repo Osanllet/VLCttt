@@ -1,2 +1,2 @@
-EN uart_rx NULL C:/.Xilinx/uart_test/UART_TX.vhd sub00/vhpl00 1505711047
-AR uart_rx rtl C:/.Xilinx/uart_test/UART_TX.vhd sub00/vhpl01 1505711048
+EN uart_rx NULL C:/.Xilinx/uart_test/UART_TX.vhd sub00/vhpl00 1505798668
+AR uart_rx rtl C:/.Xilinx/uart_test/UART_TX.vhd sub00/vhpl01 1505798669
