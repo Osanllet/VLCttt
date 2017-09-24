@@ -67,9 +67,9 @@ architecture rtl of UART_RX is
   signal r_RX_DV     : std_logic := '0';
  
  -- ******************** ENTRAMADO MS ********************
-	signal Data_in		:	unsigned(long_t DOWNTO 0):= to_unsigned(11184642, DATA_WIDTH+1);--(others => '0'); -- TRAMA A GUARDAR EN LA MEMORIA
-	signal Data_out	:	unsigned(long_t DOWNTO 0):=(others => '0');
-	TYPE estados is (espera, agrega, recorre, conteo);
+	signal Data_in		:	unsigned(long_t-1 DOWNTO 0):= to_unsigned(11184642, DATA_WIDTH);--(others => '0'); -- TRAMA A GUARDAR EN LA MEMORIA
+	signal Data_out	:	unsigned(long_t-1 DOWNTO 0):=(others => '0');
+	TYPE estados is (espera, agrega, recorre, conteo, limpia);
 	signal est_actual	: 	estados:= espera;
 	signal contador  	:	NATURAL RANGE 0 TO 255 := 0;
 	signal data		:	std_logic_vector(7 downto 0) := (others => '0');
@@ -179,35 +179,48 @@ p_DATA_FRAMING : process (i_Reset, i_Clk, r_RX_DV)
 			case est_actual is
 				when espera =>
 					if r_RX_DV = '1' then
-						contador <= contador + 1;
+						--contador <= contador + 1;
 						est_actual <= conteo;
 					else
 						est_actual <= espera;
 					end if;
 					crcm <= '0';
 				when conteo =>
-					if contador = 1 then
+--					if contador = 1 then
+--						Data_in <= Data_in rol 8;
+--					elsif contador = 5 then
+--						crcm <= '1';
+--						Data_in <= to_unsigned(11184642, Data_in'length);
+--						contador <= 0;
+--					else
+--						crcm <= '0';
+--					end if;
+					if contador = 0 then
 						Data_in <= Data_in rol 8;
-					elsif contador = 5 then
-						crcm <= '1';
-						Data_in <= to_unsigned(11184642, Data_in'length);
-						contador <= 0;
-					else
-						crcm <= '0';
 					end if;
-					--Data_in <= Data_out;
+					contador <= contador + 1;
 					est_actual <= agrega;
 				when agrega =>
 					Data_in (7 downto 0) <= unsigned(data);
-					est_actual <= recorre;
+					if contador < 5 then
+						est_actual <= recorre;
+					else
+						est_actual <= limpia;
+					end if;
 				when recorre => 
 					Data_in <= Data_in rol 8;
 					Data_out <= Data_in rol 8;
+					est_actual <= espera;
+				when limpia =>
+					Data_out <= Data_in;
+					crcm <= '1';
+					Data_in <= to_unsigned(11184642, Data_in'length);
+					contador <= 0;
 					est_actual <= espera;
 			end case;
 		end if;
 	end process;
 	
-	o_RX_Byte <=  std_logic_vector(Data_out (15 downto 8));
+	o_RX_Byte <=  std_logic_vector(Data_out (23 downto 16));
 	
 end rtl;

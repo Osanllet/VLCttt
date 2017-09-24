@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total CPU time to Xst completion: 0.38 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total CPU time to Xst completion: 0.38 secs
  
 --> Reading design: UART_RX.prj
 
@@ -134,8 +134,8 @@ Performing bidirectional port resolution...
 Synthesizing Unit <UART_RX>.
     Related source file is "C:/.Xilinx/uart_test/UART_TX.vhd".
 WARNING:Xst:646 - Signal <crcm> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <Data_out<64:16>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <Data_out<7:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <Data_out<64:24>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <Data_out<15:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
     Found finite state machine <FSM_0> for signal <est_actual>.
     -----------------------------------------------------------------------
     | States             | 4                                              |
@@ -238,14 +238,14 @@ WARNING:Xst:2677 - Node <Data_out_4> of sequential type is unconnected in block 
 WARNING:Xst:2677 - Node <Data_out_5> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_6> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_7> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_16> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_17> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_18> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_19> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_20> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_21> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_22> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_23> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_8> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_9> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_10> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_11> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_12> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_13> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_14> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_15> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_24> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_25> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_26> of sequential type is unconnected in block <UART_RX>.
@@ -295,14 +295,14 @@ WARNING:Xst:2677 - Node <Data_out_4> of sequential type is unconnected in block 
 WARNING:Xst:2677 - Node <Data_out_5> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_6> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_7> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_16> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_17> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_18> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_19> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_20> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_21> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_22> of sequential type is unconnected in block <UART_RX>.
-WARNING:Xst:2677 - Node <Data_out_23> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_8> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_9> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_10> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_11> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_12> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_13> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_14> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_15> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_24> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_25> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_26> of sequential type is unconnected in block <UART_RX>.
@@ -535,16 +535,16 @@ Timing constraint: Default OFFSET IN BEFORE for Clock 'i_Clk'
 -------------------------------------------------------------------------
 Offset:              4.080ns (Levels of Logic = 2)
   Source:            i_Reset (PAD)
-  Destination:       Data_out_8 (FF)
+  Destination:       Data_out_16 (FF)
   Destination Clock: i_Clk rising
 
-  Data Path: i_Reset to Data_out_8
+  Data Path: i_Reset to Data_out_16
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
      IBUF:I->O            71   1.106   1.235  i_Reset_IBUF (i_Reset_IBUF)
      LUT2:I0->O            8   0.612   0.643  Data_out_and00001 (Data_out_and0000)
-     FDE:CE                    0.483          Data_out_8
+     FDE:CE                    0.483          Data_out_16
     ----------------------------------------
     Total                      4.080ns (2.201ns logic, 1.879ns route)
                                        (53.9% logic, 46.1% route)
@@ -554,15 +554,15 @@ Timing constraint: Default OFFSET OUT AFTER for Clock 'i_Clk'
   Total number of paths / destination ports: 8 / 8
 -------------------------------------------------------------------------
 Offset:              4.040ns (Levels of Logic = 1)
-  Source:            Data_out_15 (FF)
+  Source:            Data_out_23 (FF)
   Destination:       o_RX_Byte<7> (PAD)
   Source Clock:      i_Clk rising
 
-  Data Path: Data_out_15 to o_RX_Byte<7>
+  Data Path: Data_out_23 to o_RX_Byte<7>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q              1   0.514   0.357  Data_out_15 (Data_out_15)
+     FDE:C->Q              1   0.514   0.357  Data_out_23 (Data_out_23)
      OBUF:I->O                 3.169          o_RX_Byte_7_OBUF (o_RX_Byte<7>)
     ----------------------------------------
     Total                      4.040ns (3.683ns logic, 0.357ns route)
@@ -571,12 +571,12 @@ Offset:              4.040ns (Levels of Logic = 1)
 =========================================================================
 
 
-Total REAL time to Xst completion: 6.00 secs
-Total CPU time to Xst completion: 5.12 secs
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 6.55 secs
  
 --> 
 
-Total memory usage is 367432 kilobytes
+Total memory usage is 363276 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  117 (   0 filtered)
