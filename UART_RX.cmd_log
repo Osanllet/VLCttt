@@ -52,3 +52,14 @@ map -intstyle ise -p xc3s500e-fg320-5 -cm area -ir off -pr off -c 100 -o UART_RX
 par -w -intstyle ise -ol high -t 1 UART_RX_map.ncd UART_RX.ncd UART_RX.pcf 
 trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml UART_RX.twx UART_RX.ncd -o UART_RX.twr UART_RX.pcf -ucf IO.ucf 
 bitgen -intstyle ise -f UART_RX.ut UART_RX.ncd 
+xst -intstyle ise -ifn "C:/.Xilinx/uart_test/UART_RX.xst" -ofn "C:/.Xilinx/uart_test/UART_RX.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc IO.ucf -p xc3s500e-fg320-5 UART_RX.ngc UART_RX.ngd  
+map -intstyle ise -p xc3s500e-fg320-5 -cm area -ir off -pr off -c 100 -o UART_RX_map.ncd UART_RX.ngd UART_RX.pcf 
+par -w -intstyle ise -ol high -t 1 UART_RX_map.ncd UART_RX.ncd UART_RX.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml UART_RX.twx UART_RX.ncd -o UART_RX.twr UART_RX.pcf -ucf IO.ucf 
+xst -intstyle ise -ifn "C:/.Xilinx/uart_test/UART_RX.xst" -ofn "C:/.Xilinx/uart_test/UART_RX.syr" 
+xst -intstyle ise -ifn "C:/.Xilinx/uart_test/UART_RX.xst" -ofn "C:/.Xilinx/uart_test/UART_RX.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc IO.ucf -p xc3s500e-fg320-5 UART_RX.ngc UART_RX.ngd  
+map -intstyle ise -p xc3s500e-fg320-5 -cm area -ir off -pr off -c 100 -o UART_RX_map.ncd UART_RX.ngd UART_RX.pcf 
+par -w -intstyle ise -ol high -t 1 UART_RX_map.ncd UART_RX.ncd UART_RX.pcf 
+trce -intstyle ise -v 3 -s 5 -n 3 -fastpaths -xml UART_RX.twx UART_RX.ncd -o UART_RX.twr UART_RX.pcf -ucf IO.ucf 

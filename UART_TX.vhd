@@ -37,7 +37,7 @@ use ieee.numeric_std.all;
 entity UART_RX is
   generic (
     g_CLKS_PER_BIT : integer := 5208;     -- Needs to be set correctly
-	 DATA_WIDTH	:	INTEGER := 64
+	 DATA_WIDTH	:	INTEGER := 80--2088--64
     );
   port (
     i_Clk       : in  std_logic;
@@ -69,7 +69,7 @@ architecture rtl of UART_RX is
  -- ******************** ENTRAMADO MS ********************
 	signal Data_in		:	unsigned(long_t-1 DOWNTO 0):= to_unsigned(11184642, DATA_WIDTH);--(others => '0'); -- TRAMA A GUARDAR EN LA MEMORIA
 	signal Data_out	:	unsigned(long_t-1 DOWNTO 0):=(others => '0');
-	TYPE estados is (espera, agrega, recorre, conteo, limpia);
+	TYPE estados is (espera, agrega, recorre, conteo, limpia, recorre_crc);
 	signal est_actual	: 	estados:= espera;
 	signal contador  	:	NATURAL RANGE 0 TO 255 := 0;
 	signal data		:	std_logic_vector(7 downto 0) := (others => '0');
@@ -205,14 +205,18 @@ p_DATA_FRAMING : process (i_Reset, i_Clk, r_RX_DV)
 					if contador < 5 then
 						est_actual <= recorre;
 					else
-						est_actual <= limpia;
+						est_actual <= recorre_crc;
 					end if;
 				when recorre => 
 					Data_in <= Data_in rol 8;
 					Data_out <= Data_in rol 8;
 					est_actual <= espera;
+				when recorre_crc =>
+					Data_in <= Data_in rol 16;
+					Data_out <= Data_in rol 16;
+					est_actual <= limpia;
 				when limpia =>
-					Data_out <= Data_in;
+					--Data_out <= Data_in;
 					crcm <= '1';
 					Data_in <= to_unsigned(11184642, Data_in'length);
 					contador <= 0;

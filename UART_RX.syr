@@ -3,14 +3,14 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.38 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.15 secs
  
 --> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.38 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.15 secs
  
 --> Reading design: UART_RX.prj
 
@@ -112,7 +112,7 @@ Entity <uart_rx> (Architecture <rtl>) compiled.
 *                     Design Hierarchy Analysis                         *
 =========================================================================
 Analyzing hierarchy for entity <UART_RX> in library <work> (architecture <rtl>) with generics.
-	DATA_WIDTH = 64
+	DATA_WIDTH = 80
 	g_CLKS_PER_BIT = 5208
 
 
@@ -120,7 +120,7 @@ Analyzing hierarchy for entity <UART_RX> in library <work> (architecture <rtl>) 
 *                            HDL Analysis                               *
 =========================================================================
 Analyzing generic Entity <UART_RX> in library <work> (Architecture <rtl>).
-	DATA_WIDTH = 64
+	DATA_WIDTH = 80
 	g_CLKS_PER_BIT = 5208
 Entity <UART_RX> analyzed. Unit <UART_RX> generated.
 
@@ -134,14 +134,15 @@ Performing bidirectional port resolution...
 Synthesizing Unit <UART_RX>.
     Related source file is "C:/.Xilinx/uart_test/UART_TX.vhd".
 WARNING:Xst:646 - Signal <crcm> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:646 - Signal <Data_out<64:24>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <Data_out<79:24>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 WARNING:Xst:646 - Signal <Data_out<15:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+INFO:Xst:1799 - State recorre_crc is never reached in FSM <est_actual>.
     Found finite state machine <FSM_0> for signal <est_actual>.
     -----------------------------------------------------------------------
-    | States             | 4                                              |
-    | Transitions        | 5                                              |
-    | Inputs             | 1                                              |
-    | Outputs            | 4                                              |
+    | States             | 5                                              |
+    | Transitions        | 7                                              |
+    | Inputs             | 2                                              |
+    | Outputs            | 5                                              |
     | Clock              | i_Clk                     (rising_edge)        |
     | Reset              | i_Reset                   (positive)           |
     | Reset type         | asynchronous                                   |
@@ -162,10 +163,11 @@ WARNING:Xst:646 - Signal <Data_out<15:0>> is assigned but never used. This uncon
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
     Found 8-bit register for signal <contador>.
-    Found 8-bit adder for signal <contador$addsub0000> created at line 182.
+    Found 8-bit adder for signal <contador$addsub0000> created at line 201.
     Found 8-bit register for signal <data>.
-    Found 65-bit register for signal <Data_in>.
-    Found 65-bit register for signal <Data_out>.
+    Found 80-bit register for signal <Data_in>.
+    Found 80-bit register for signal <Data_out>.
+    Found 8-bit comparator less for signal <est_actual$cmp_lt0000> created at line 205.
     Found 3-bit register for signal <r_Bit_Index>.
     Found 3-bit adder for signal <r_Bit_Index$addsub0000> created at line 136.
     Found 13-bit register for signal <r_Clk_Count>.
@@ -178,9 +180,9 @@ WARNING:Xst:646 - Signal <Data_out<15:0>> is assigned but never used. This uncon
     Found 3-bit comparator less for signal <r_SM_Act_State$cmp_lt0001> created at line 135.
     Summary:
 	inferred   2 Finite State Machine(s).
-	inferred 173 D-type flip-flop(s).
+	inferred 203 D-type flip-flop(s).
 	inferred   3 Adder/Subtractor(s).
-	inferred   2 Comparator(s).
+	inferred   3 Comparator(s).
 Unit <UART_RX> synthesized.
 
 INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
@@ -193,15 +195,16 @@ Macro Statistics
  13-bit adder                                          : 1
  3-bit adder                                           : 1
  8-bit adder                                           : 1
-# Registers                                            : 81
- 1-bit register                                        : 76
+# Registers                                            : 96
+ 1-bit register                                        : 91
  13-bit register                                       : 1
  3-bit register                                        : 1
- 65-bit register                                       : 1
  8-bit register                                        : 2
-# Comparators                                          : 2
+ 80-bit register                                       : 1
+# Comparators                                          : 3
  13-bit comparator less                                : 1
  3-bit comparator less                                 : 1
+ 8-bit comparator less                                 : 1
 
 =========================================================================
 
@@ -221,15 +224,17 @@ Optimizing FSM <r_SM_Act_State/FSM> on signal <r_SM_Act_State[1:3]> with gray en
  s_cleanup      | 110
 ----------------------------
 Analyzing FSM <FSM_0> for best encoding.
-Optimizing FSM <est_actual/FSM> on signal <est_actual[1:4]> with one-hot encoding.
----------------------
- State   | Encoding
----------------------
- espera  | 0001
- agrega  | 0100
- recorre | 1000
- conteo  | 0010
----------------------
+Optimizing FSM <est_actual/FSM> on signal <est_actual[1:3]> with gray encoding.
+-------------------------
+ State       | Encoding
+-------------------------
+ espera      | 000
+ agrega      | 011
+ recorre     | 010
+ conteo      | 001
+ limpia      | 110
+ recorre_crc | unreached
+-------------------------
 WARNING:Xst:2677 - Node <Data_out_0> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_1> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_2> of sequential type is unconnected in block <UART_RX>.
@@ -287,6 +292,21 @@ WARNING:Xst:2677 - Node <Data_out_61> of sequential type is unconnected in block
 WARNING:Xst:2677 - Node <Data_out_62> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_63> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_64> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_65> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_66> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_67> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_68> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_69> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_70> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_71> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_72> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_73> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_74> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_75> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_76> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_77> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_78> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_79> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_0> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_1> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_2> of sequential type is unconnected in block <UART_RX>.
@@ -344,6 +364,21 @@ WARNING:Xst:2677 - Node <Data_out_61> of sequential type is unconnected in block
 WARNING:Xst:2677 - Node <Data_out_62> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_63> of sequential type is unconnected in block <UART_RX>.
 WARNING:Xst:2677 - Node <Data_out_64> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_65> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_66> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_67> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_68> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_69> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_70> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_71> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_72> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_73> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_74> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_75> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_76> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_77> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_78> of sequential type is unconnected in block <UART_RX>.
+WARNING:Xst:2677 - Node <Data_out_79> of sequential type is unconnected in block <UART_RX>.
 
 =========================================================================
 Advanced HDL Synthesis Report
@@ -354,11 +389,12 @@ Macro Statistics
  13-bit adder                                          : 1
  3-bit adder                                           : 1
  8-bit adder                                           : 1
-# Registers                                            : 116
- Flip-Flops                                            : 116
-# Comparators                                          : 2
+# Registers                                            : 131
+ Flip-Flops                                            : 131
+# Comparators                                          : 3
  13-bit comparator less                                : 1
  3-bit comparator less                                 : 1
+ 8-bit comparator less                                 : 1
 
 =========================================================================
 
@@ -382,8 +418,8 @@ Unit <UART_RX> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 121
- Flip-Flops                                            : 121
+# Registers                                            : 135
+ Flip-Flops                                            : 135
 # Shift Registers                                      : 1
  2-bit shift register                                  : 1
 
@@ -414,25 +450,24 @@ Design Statistics
 # IOs                              : 11
 
 Cell Usage :
-# BELS                             : 234
+# BELS                             : 249
 #      GND                         : 1
 #      INV                         : 5
 #      LUT1                        : 16
-#      LUT2                        : 12
-#      LUT3                        : 21
-#      LUT3_D                      : 2
-#      LUT4                        : 110
-#      LUT4_D                      : 9
-#      LUT4_L                      : 14
+#      LUT2                        : 11
+#      LUT3                        : 31
+#      LUT3_D                      : 1
+#      LUT4                        : 126
+#      LUT4_D                      : 6
+#      LUT4_L                      : 9
 #      MUXCY                       : 21
-#      MUXF5                       : 9
+#      MUXF5                       : 8
 #      VCC                         : 1
 #      XORCY                       : 13
-# FlipFlops/Latches                : 122
+# FlipFlops/Latches                : 136
 #      FD                          : 19
-#      FDC                         : 68
+#      FDC                         : 83
 #      FDE                         : 32
-#      FDP                         : 1
 #      FDRS                        : 1
 #      FDS                         : 1
 # Shift Registers                  : 1
@@ -449,10 +484,10 @@ Device utilization summary:
 
 Selected Device : 3s500efg320-5 
 
- Number of Slices:                      105  out of   4656     2%  
- Number of Slice Flip Flops:            122  out of   9312     1%  
- Number of 4 input LUTs:                190  out of   9312     2%  
-    Number used as logic:               189
+ Number of Slices:                      112  out of   4656     2%  
+ Number of Slice Flip Flops:            136  out of   9312     1%  
+ Number of 4 input LUTs:                206  out of   9312     2%  
+    Number used as logic:               205
     Number used as Shift registers:       1
  Number of IOs:                          11
  Number of bonded IOBs:                  11  out of    232     4%  
@@ -479,7 +514,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-i_Clk                              | BUFGP                  | 123   |
+i_Clk                              | BUFGP                  | 137   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -487,7 +522,7 @@ Asynchronous Control Signals Information:
 -----------------------------------+------------------------+-------+
 Control Signal                     | Buffer(FF name)        | Load  |
 -----------------------------------+------------------------+-------+
-i_Reset                            | IBUF                   | 69    |
+i_Reset                            | IBUF                   | 83    |
 -----------------------------------+------------------------+-------+
 
 Timing Summary:
@@ -495,8 +530,8 @@ Timing Summary:
 Speed Grade: -5
 
    Minimum period: 6.268ns (Maximum Frequency: 159.546MHz)
-   Minimum input arrival time before clock: 4.080ns
-   Maximum output required time after clock: 4.040ns
+   Minimum input arrival time before clock: 4.167ns
+   Maximum output required time after clock: 4.063ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -506,22 +541,22 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'i_Clk'
   Clock period: 6.268ns (frequency: 159.546MHz)
-  Total number of paths / destination ports: 2860 / 149
+  Total number of paths / destination ports: 3082 / 155
 -------------------------------------------------------------------------
 Delay:               6.268ns (Levels of Logic = 5)
-  Source:            r_Clk_Count_7 (FF)
+  Source:            r_Clk_Count_6 (FF)
   Destination:       r_Clk_Count_0 (FF)
   Source Clock:      i_Clk rising
   Destination Clock: i_Clk rising
 
-  Data Path: r_Clk_Count_7 to r_Clk_Count_0
+  Data Path: r_Clk_Count_6 to r_Clk_Count_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q               4   0.514   0.651  r_Clk_Count_7 (r_Clk_Count_7)
-     LUT4:I0->O            1   0.612   0.426  r_SM_Act_State_cmp_eq000050_SW0 (N105)
-     LUT4_D:I1->LO         1   0.612   0.169  r_SM_Act_State_cmp_eq000050 (N180)
-     LUT2:I1->O            1   0.612   0.360  r_Clk_Count_mux0000<0>2_SW0 (N99)
+     FD:C->Q               4   0.514   0.651  r_Clk_Count_6 (r_Clk_Count_6)
+     LUT4:I0->O            1   0.612   0.426  r_SM_Act_State_cmp_eq000050_SW0 (N75)
+     LUT4_D:I1->LO         1   0.612   0.169  r_SM_Act_State_cmp_eq000050 (N126)
+     LUT2:I1->O            1   0.612   0.360  r_Clk_Count_mux0000<0>2_SW0 (N69)
      LUT4_D:I3->O         12   0.612   0.820  r_Clk_Count_mux0000<0>2 (N6)
      LUT4:I3->O            1   0.612   0.000  r_Clk_Count_mux0000<8>1 (r_Clk_Count_mux0000<8>)
      FD:D                      0.268          r_Clk_Count_4
@@ -533,7 +568,7 @@ Delay:               6.268ns (Levels of Logic = 5)
 Timing constraint: Default OFFSET IN BEFORE for Clock 'i_Clk'
   Total number of paths / destination ports: 17 / 17
 -------------------------------------------------------------------------
-Offset:              4.080ns (Levels of Logic = 2)
+Offset:              4.167ns (Levels of Logic = 2)
   Source:            i_Reset (PAD)
   Destination:       Data_out_16 (FF)
   Destination Clock: i_Clk rising
@@ -542,18 +577,18 @@ Offset:              4.080ns (Levels of Logic = 2)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            71   1.106   1.235  i_Reset_IBUF (i_Reset_IBUF)
-     LUT2:I0->O            8   0.612   0.643  Data_out_and00001 (Data_out_and0000)
+     IBUF:I->O            84   1.106   1.087  i_Reset_IBUF (i_Reset_IBUF)
+     INV:I->O             16   0.612   0.879  i_Reset_inv1_INV_0 (i_Reset_inv)
      FDE:CE                    0.483          Data_out_16
     ----------------------------------------
-    Total                      4.080ns (2.201ns logic, 1.879ns route)
-                                       (53.9% logic, 46.1% route)
+    Total                      4.167ns (2.201ns logic, 1.966ns route)
+                                       (52.8% logic, 47.2% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'i_Clk'
   Total number of paths / destination ports: 8 / 8
 -------------------------------------------------------------------------
-Offset:              4.040ns (Levels of Logic = 1)
+Offset:              4.063ns (Levels of Logic = 1)
   Source:            Data_out_23 (FF)
   Destination:       o_RX_Byte<7> (PAD)
   Source Clock:      i_Clk rising
@@ -562,23 +597,23 @@ Offset:              4.040ns (Levels of Logic = 1)
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDE:C->Q              1   0.514   0.357  Data_out_23 (Data_out_23)
+     FDE:C->Q              2   0.514   0.380  Data_out_23 (Data_out_23)
      OBUF:I->O                 3.169          o_RX_Byte_7_OBUF (o_RX_Byte<7>)
     ----------------------------------------
-    Total                      4.040ns (3.683ns logic, 0.357ns route)
-                                       (91.2% logic, 8.8% route)
+    Total                      4.063ns (3.683ns logic, 0.380ns route)
+                                       (90.6% logic, 9.4% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 7.00 secs
-Total CPU time to Xst completion: 6.55 secs
+Total REAL time to Xst completion: 6.00 secs
+Total CPU time to Xst completion: 5.87 secs
  
 --> 
 
-Total memory usage is 363276 kilobytes
+Total memory usage is 367380 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :  117 (   0 filtered)
-Number of infos    :    1 (   0 filtered)
+Number of warnings :  147 (   0 filtered)
+Number of infos    :    2 (   0 filtered)
 

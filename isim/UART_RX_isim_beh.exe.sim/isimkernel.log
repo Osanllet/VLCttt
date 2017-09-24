@@ -2,28 +2,9 @@ Command line:
    UART_RX_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  54960
+     -socket  59230
 
-Sun Sep 24 01:58:27 2017
+Sun Sep 24 15:46:07 2017
 
 
- Elaboration Time: 0.375 sec
-
- Current Memory Usage: 1816.85 Meg
-
- Total Signals          : 17
- Total Nets             : 164
- Total Signal Drivers   : 14
- Total Blocks           : 3
- Total Primitive Blocks : 3
- Total Processes        : 4
- Total Traceable Variables  : 16
- Total Scalar Nets and Variables : 650
-Total Line Count : 62
-
- Total Simulation Time: 1.03125 sec
-
- Current Memory Usage: 1187.68 Meg
-
-Sun Sep 24 02:11:56 2017
-
+ Elaboration Time: 0.34375 sec
