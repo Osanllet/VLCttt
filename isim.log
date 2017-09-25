@@ -14,6 +14,27 @@ Finished circuit initialization process.
 # isim force add /uart_rx/i_clk 0 -radix bin -value 1 -radix bin -time 10 ns -repeat 20 ns
 # isim force add /uart_rx/i_rx_serial 1 -radix bin
 # run 100.00us
+# isim force add /uart_rx/i_rx_serial 1 -radix bin
+# run 100.00us
+# run 100.00us
+# run 100.00us
+# run 100.00us
+# run 100.00us
+# run 100.00us
+# run 100.00us
+# run 100.00us
+# run 100.00us
+# isim force add /uart_rx/i_rx_serial 0 -radix bin
+# run 100.00us
+# isim force add /uart_rx/i_rx_serial 1 -radix bin
+# run 100.00us
+# run 100.00us
+# run 100.00us
+# run 100.00us
+# run 100.00us
+# run 100.00us
+# run 100.00us
+# run 100.00us
 # run 100.00us
 # isim force add /uart_rx/i_rx_serial 0 -radix bin
 # run 100.00us
@@ -30,22 +51,8 @@ Finished circuit initialization process.
 # isim force add /uart_rx/i_rx_serial 0 -radix bin
 # run 100.00us
 # isim force add /uart_rx/i_rx_serial 1 -radix bin
-# isim force add /uart_rx/i_rx_serial 1 -radix bin
 # run 100.00us
 # run 100.00us
-# isim force add /uart_rx/i_rx_serial 0 -radix bin
-# run 100.00us
-# run 100.00us
-# run 100.00us
-# run 100.00us
-# run 100.00us
-# run 100.00us
-# run 100.00us
-# isim force add /uart_rx/i_rx_serial 1 -radix bin
-# run 100.00us
-# isim force add /uart_rx/i_rx_serial 0 -radix bin
-# run 100.00us
-# isim force add /uart_rx/i_rx_serial 1 -radix bin
 # run 100.00us
 # run 100.00us
 # run 100.00us
@@ -61,18 +68,7 @@ Finished circuit initialization process.
 # isim force add /uart_rx/i_rx_serial 1 -radix bin
 # run 100.00us
 # run 100.00us
-# isim force add /uart_rx/i_rx_serial 0 -radix bin
 # run 100.00us
-# run 100.00us
-# run 100.00us
-# run 100.00us
-# isim force add /uart_rx/i_rx_serial 1 -radix bin
-# run 100.00us
-# run 100.00us
-# run 100.00us
-# isim force add /uart_rx/i_rx_serial 0 -radix bin
-# run 100.00us
-# isim force add /uart_rx/i_rx_serial 1 -radix bin
 # run 100.00us
 # run 100.00us
 # run 100.00us

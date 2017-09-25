@@ -33,11 +33,12 @@
 library ieee;
 use ieee.std_logic_1164.ALL;
 use ieee.numeric_std.all;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
  
 entity UART_RX is
   generic (
     g_CLKS_PER_BIT : integer := 5208;     -- Needs to be set correctly
-	 DATA_WIDTH	:	INTEGER := 80--2088--64
+	 DATA_WIDTH	:	INTEGER := 2088--80--2088--64
     );
   port (
     i_Clk       : in  std_logic;
@@ -66,9 +67,13 @@ architecture rtl of UART_RX is
   signal r_RX_Byte   : std_logic_vector(7 downto 0) := (others => '0');
   signal r_RX_DV     : std_logic := '0';
  
+  SIGNAL preambulo	: STD_LOGIC_VECTOR(15 DOWNTO 0):="1010101010101010";
+  SIGNAL idt			: STD_LOGIC_VECTOR(7 DOWNTO 0):="00000001";
+  SIGNAL lcu			: STD_LOGIC_VECTOR(7 DOWNTO 0):="00000100";
  -- ******************** ENTRAMADO MS ********************
-	signal Data_in		:	unsigned(long_t-1 DOWNTO 0):= to_unsigned(11184642, DATA_WIDTH);--(others => '0'); -- TRAMA A GUARDAR EN LA MEMORIA
-	signal Data_out	:	unsigned(long_t-1 DOWNTO 0):=(others => '0');
+	--signal Data_in		:	unsigned(long_t-1 DOWNTO 0):= to_unsigned(11184642, DATA_WIDTH);--(others => '0'); -- TRAMA A GUARDAR EN LA MEMORIA
+	signal Data_in		:	unsigned(long_t-1 DOWNTO 0):=(others => '0');
+	--signal Data_out	:	unsigned(long_t-1 DOWNTO 0):=(others => '0');
 	TYPE estados is (espera, agrega, recorre, conteo, limpia, recorre_crc);
 	signal est_actual	: 	estados:= espera;
 	signal contador  	:	NATURAL RANGE 0 TO 255 := 0;
@@ -196,24 +201,26 @@ p_DATA_FRAMING : process (i_Reset, i_Clk, r_RX_DV)
 --						crcm <= '0';
 --					end if;
 					if contador = 0 then
-						Data_in <= Data_in rol 8;
+						Data_in(long_t-1 downto 40) <= (others => '0');
+						Data_in(39 downto 0) <= unsigned(preambulo) & unsigned(idt) & unsigned(lcu) & "00000000"; 
+						--Data_in <= Data_in rol 8;
 					end if;
-					contador <= contador + 1;
+					contador <= contador + 1; 
 					est_actual <= agrega;
 				when agrega =>
 					Data_in (7 downto 0) <= unsigned(data);
-					if contador < 5 then
+					if contador < 4 then
 						est_actual <= recorre;
 					else
 						est_actual <= recorre_crc;
 					end if;
 				when recorre => 
 					Data_in <= Data_in rol 8;
-					Data_out <= Data_in rol 8;
+					--Data_out <= Data_in rol 8;
 					est_actual <= espera;
 				when recorre_crc =>
 					Data_in <= Data_in rol 16;
-					Data_out <= Data_in rol 16;
+					--Data_out <= Data_in rol 16;
 					est_actual <= limpia;
 				when limpia =>
 					--Data_out <= Data_in;
@@ -225,6 +232,22 @@ p_DATA_FRAMING : process (i_Reset, i_Clk, r_RX_DV)
 		end if;
 	end process;
 	
-	o_RX_Byte <=  std_logic_vector(Data_out (23 downto 16));
+	--o_RX_Byte <=  std_logic_vector(Data_out (23 downto 16));
+	o_RX_Byte <= idt;
+	
+p_FRAME_COUNT : process (i_Reset, i_Clk, crcm) 
+	begin
+		if i_Reset = '1' then
+			idt <= (others => '0');
+		elsif rising_edge(i_Clk) then
+			if crcm = '1' then
+				if idt = "11111111" then
+					idt <= "00000001";
+				else
+					idt <= idt + '1';
+				end if;
+			end if;
+		end if;
+	end process;
 	
 end rtl;

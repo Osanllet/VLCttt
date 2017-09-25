@@ -45,8 +45,8 @@ Setup/Hold to clock i_Clk
             |Max Setup to|Max Hold to |                  | Clock  |
 Source      | clk (edge) | clk (edge) |Internal Clock(s) | Phase  |
 ------------+------------+------------+------------------+--------+
-i_RX_Serial |    0.701(R)|    0.846(R)|i_Clk_BUFGP       |   0.000|
-i_Reset     |    1.306(R)|    0.465(R)|i_Clk_BUFGP       |   0.000|
+i_RX_Serial |    1.399(R)|    0.289(R)|i_Clk_BUFGP       |   0.000|
+i_Reset     |    1.863(R)|    0.350(R)|i_Clk_BUFGP       |   0.000|
 ------------+------------+------------+------------------+--------+
 
 Clock i_Clk to Pad
@@ -54,14 +54,14 @@ Clock i_Clk to Pad
             | clk (edge) |                  | Clock  |
 Destination |   to PAD   |Internal Clock(s) | Phase  |
 ------------+------------+------------------+--------+
-o_RX_Byte<0>|    8.144(R)|i_Clk_BUFGP       |   0.000|
-o_RX_Byte<1>|    7.927(R)|i_Clk_BUFGP       |   0.000|
-o_RX_Byte<2>|    6.731(R)|i_Clk_BUFGP       |   0.000|
-o_RX_Byte<3>|    6.734(R)|i_Clk_BUFGP       |   0.000|
-o_RX_Byte<4>|    6.721(R)|i_Clk_BUFGP       |   0.000|
-o_RX_Byte<5>|    6.724(R)|i_Clk_BUFGP       |   0.000|
-o_RX_Byte<6>|    6.756(R)|i_Clk_BUFGP       |   0.000|
-o_RX_Byte<7>|    7.153(R)|i_Clk_BUFGP       |   0.000|
+o_RX_Byte<0>|    7.787(R)|i_Clk_BUFGP       |   0.000|
+o_RX_Byte<1>|    7.992(R)|i_Clk_BUFGP       |   0.000|
+o_RX_Byte<2>|    7.494(R)|i_Clk_BUFGP       |   0.000|
+o_RX_Byte<3>|    7.424(R)|i_Clk_BUFGP       |   0.000|
+o_RX_Byte<4>|    7.063(R)|i_Clk_BUFGP       |   0.000|
+o_RX_Byte<5>|    6.995(R)|i_Clk_BUFGP       |   0.000|
+o_RX_Byte<6>|    7.538(R)|i_Clk_BUFGP       |   0.000|
+o_RX_Byte<7>|    7.555(R)|i_Clk_BUFGP       |   0.000|
 ------------+------------+------------------+--------+
 
 Clock to Setup on destination clock i_Clk
@@ -69,11 +69,11 @@ Clock to Setup on destination clock i_Clk
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-i_Clk          |    5.465|         |         |         |
+i_Clk          |    5.247|         |         |         |
 ---------------+---------+---------+---------+---------+
 
 
-Analysis completed Sun Sep 24 15:19:28 2017 
+Analysis completed Mon Sep 25 00:02:51 2017 
 --------------------------------------------------------------------------------
 
 Trace Settings:
