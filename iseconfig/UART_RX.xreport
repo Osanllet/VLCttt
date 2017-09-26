@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2017-09-24T23:59:42</DateModified>
+  <DateModified>2017-09-25T19:41:01</DateModified>
   <ModuleName>UART_RX</ModuleName>
-  <SummaryTimeStamp>2017-09-24T23:55:59</SummaryTimeStamp>
+  <SummaryTimeStamp>2017-09-25T19:38:06</SummaryTimeStamp>
   <SavedFilePath>C:/.Xilinx/uart_test/iseconfig/UART_RX.xreport</SavedFilePath>
   <ImplementationReportsDirectory>C:/.Xilinx/uart_test\</ImplementationReportsDirectory>
   <DateInitialized>2017-09-17T16:38:01</DateInitialized>

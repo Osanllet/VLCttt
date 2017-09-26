@@ -38,7 +38,7 @@ USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 entity UART_RX is
   generic (
     g_CLKS_PER_BIT : integer := 5208;     -- Needs to be set correctly
-	 DATA_WIDTH	:	INTEGER := 2088--80--2088--64
+	 DATA_WIDTH	:	INTEGER := 80--2088--64
     );
   port (
     i_Clk       : in  std_logic;
@@ -67,18 +67,27 @@ architecture rtl of UART_RX is
   signal r_RX_Byte   : std_logic_vector(7 downto 0) := (others => '0');
   signal r_RX_DV     : std_logic := '0';
  
-  SIGNAL preambulo	: STD_LOGIC_VECTOR(15 DOWNTO 0):="1010101010101010";
-  SIGNAL idt			: STD_LOGIC_VECTOR(7 DOWNTO 0):="00000001";
-  SIGNAL lcu			: STD_LOGIC_VECTOR(7 DOWNTO 0):="00000100";
+ -- SIGNAL preambulo	: unsigned(15 DOWNTO 0):="1010101010101010";
+  SIGNAL idt			: std_logic_vector(7 DOWNTO 0):="00000001";
+  SIGNAL lcu			: std_logic_vector(7 DOWNTO 0):="00000100";
+  signal dat			: integer range 0 to long_t := 48;
  -- ******************** ENTRAMADO MS ********************
 	--signal Data_in		:	unsigned(long_t-1 DOWNTO 0):= to_unsigned(11184642, DATA_WIDTH);--(others => '0'); -- TRAMA A GUARDAR EN LA MEMORIA
 	signal Data_in		:	unsigned(long_t-1 DOWNTO 0):=(others => '0');
-	--signal Data_out	:	unsigned(long_t-1 DOWNTO 0):=(others => '0');
+	signal Data_out	:	unsigned(long_t-1 DOWNTO 0):=(others => '0');
+	signal Data_crc	:	unsigned(long_t-1 DOWNTO 0):=(others => '0');
 	TYPE estados is (espera, agrega, recorre, conteo, limpia, recorre_crc);
 	signal est_actual	: 	estados:= espera;
 	signal contador  	:	NATURAL RANGE 0 TO 255 := 0;
 	signal data		:	std_logic_vector(7 downto 0) := (others => '0');
 	SIGNAL crcm			: STD_LOGIC:='0';
+	
+	-- ******************** SEÑALES CRC ******************** 
+signal crc_temp : 			std_logic_vector(15 downto 0) := (others => '0'); -- Vector auxiliar para crc 
+signal counter1 : 			integer := 0; -- Contador de iteraciones
+signal crcout : 				std_logic_vector(15 downto 0);
+signal crc_ini:				std_logic:='0';
+--signal dato:					std_logic:='0';
    
 begin
  
@@ -202,7 +211,7 @@ p_DATA_FRAMING : process (i_Reset, i_Clk, r_RX_DV)
 --					end if;
 					if contador = 0 then
 						Data_in(long_t-1 downto 40) <= (others => '0');
-						Data_in(39 downto 0) <= unsigned(preambulo) & unsigned(idt) & unsigned(lcu) & "00000000"; 
+						Data_in(39 downto 0) <= "1010101010101010" & unsigned(idt) & unsigned(lcu) & "00000000"; 
 						--Data_in <= Data_in rol 8;
 					end if;
 					contador <= contador + 1; 
@@ -223,7 +232,7 @@ p_DATA_FRAMING : process (i_Reset, i_Clk, r_RX_DV)
 					--Data_out <= Data_in rol 16;
 					est_actual <= limpia;
 				when limpia =>
-					--Data_out <= Data_in;
+					Data_crc <= Data_in;
 					crcm <= '1';
 					Data_in <= to_unsigned(11184642, Data_in'length);
 					contador <= 0;
@@ -233,7 +242,7 @@ p_DATA_FRAMING : process (i_Reset, i_Clk, r_RX_DV)
 	end process;
 	
 	--o_RX_Byte <=  std_logic_vector(Data_out (23 downto 16));
-	o_RX_Byte <= idt;
+	--o_RX_Byte <= idt;
 	
 p_FRAME_COUNT : process (i_Reset, i_Clk, crcm) 
 	begin
@@ -249,5 +258,48 @@ p_FRAME_COUNT : process (i_Reset, i_Clk, crcm)
 			end if;
 		end if;
 	end process;
+	
+	p_CRC : process (i_Reset, i_Clk, crcm) 
+	begin
+		if i_Reset = '1' then
+			crc_temp <= (others => '0');
+		elsif rising_edge(i_Clk) then
+			if crcm = '1' then
+				crc_temp <= (others => '0');
+				Data_out <= Data_crc;
+				crc_ini <= '1';
+			end if;
+			if crc_ini = '1' then
+				--dato <= Data_out((dat-1)-counter1);
+				crc_temp(0) <= Data_out((dat-1)-counter1) xor crc_temp(15);
+				crc_temp(1) <= crc_temp(0);
+				crc_temp(2) <= Data_out((dat-1)-counter1) xor crc_temp(15) xor crc_temp(1);
+				crc_temp(3) <= crc_temp(2);
+				crc_temp(4) <= crc_temp(3);
+				crc_temp(5) <= crc_temp(4);
+				crc_temp(6) <= crc_temp(5);
+				crc_temp(7) <= crc_temp(6);
+				crc_temp(8) <= crc_temp(7);
+				crc_temp(9) <= crc_temp(8);
+				crc_temp(10) <= crc_temp(9);
+				crc_temp(11) <= crc_temp(10);
+				crc_temp(12) <= crc_temp(11);
+				crc_temp(13) <= crc_temp(12);
+				crc_temp(14) <= crc_temp(13);
+				crc_temp(15) <= Data_out((dat-1)-counter1) xor crc_temp(15) xor crc_temp(14);
+				counter1 <= counter1 + 1; -- Contador bit a bit de datos a enviar.
+				if counter1 = 32 then
+					counter1 <= 0;
+					crcout <= crc_temp;
+					Data_out(15 downto 0) <= unsigned(crc_temp);
+					crc_ini <= '0';
+				else
+					crcout <= (others => '0');    -- La salida del CRC es cero durante el tiempo de espera de datos o inactividad.
+				end if;
+			end if;
+		end if;
+	end process;
+	o_RX_Byte <= std_logic_vector(Data_out (7 downto 0));
+
 	
 end rtl;

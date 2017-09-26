@@ -1,11 +1,9 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Mon Sep 25 00:02:35 2017
+// Written by: Map P.20131013 on Mon Sep 25 22:43:20 2017
 //! **************************************************************************
 
 SCHEMATIC START;
-COMP "i_Clk" LOCATE = SITE "C9" LEVEL 1;
 COMP "i_RX_Serial" LOCATE = SITE "R7" LEVEL 1;
-COMP "i_Reset" LOCATE = SITE "K17" LEVEL 1;
 COMP "o_RX_Byte<0>" LOCATE = SITE "F9" LEVEL 1;
 COMP "o_RX_Byte<1>" LOCATE = SITE "E9" LEVEL 1;
 COMP "o_RX_Byte<2>" LOCATE = SITE "D11" LEVEL 1;
@@ -14,6 +12,8 @@ COMP "o_RX_Byte<4>" LOCATE = SITE "F11" LEVEL 1;
 COMP "o_RX_Byte<5>" LOCATE = SITE "E11" LEVEL 1;
 COMP "o_RX_Byte<6>" LOCATE = SITE "E12" LEVEL 1;
 COMP "o_RX_Byte<7>" LOCATE = SITE "F12" LEVEL 1;
+COMP "i_Reset" LOCATE = SITE "K17" LEVEL 1;
+COMP "i_Clk" LOCATE = SITE "C9" LEVEL 1;
 NET "i_Clk_BUFGP/IBUFG" BEL "i_Clk_BUFGP/BUFG.GCLKMUX" USELOCALCONNECT;
 SCHEMATIC END;
 

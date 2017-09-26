@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.12 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.12 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Reading design: UART_RX.prj
 
@@ -112,7 +112,7 @@ Entity <uart_rx> (Architecture <rtl>) compiled.
 *                     Design Hierarchy Analysis                         *
 =========================================================================
 Analyzing hierarchy for entity <UART_RX> in library <work> (architecture <rtl>) with generics.
-	DATA_WIDTH = 2088
+	DATA_WIDTH = 80
 	g_CLKS_PER_BIT = 5208
 
 
@@ -120,7 +120,7 @@ Analyzing hierarchy for entity <UART_RX> in library <work> (architecture <rtl>) 
 *                            HDL Analysis                               *
 =========================================================================
 Analyzing generic Entity <UART_RX> in library <work> (Architecture <rtl>).
-	DATA_WIDTH = 2088
+	DATA_WIDTH = 80
 	g_CLKS_PER_BIT = 5208
 Entity <UART_RX> analyzed. Unit <UART_RX> generated.
 
@@ -133,20 +133,10 @@ Performing bidirectional port resolution...
 
 Synthesizing Unit <UART_RX>.
     Related source file is "C:/.Xilinx/uart_test/UART_TX.vhd".
-WARNING:Xst:653 - Signal <preambulo> is used but never assigned. This sourceless signal will be automatically connected to value 1010101010101010.
 WARNING:Xst:653 - Signal <lcu> is used but never assigned. This sourceless signal will be automatically connected to value 00000100.
-    Found finite state machine <FSM_0> for signal <r_SM_Act_State>.
-    -----------------------------------------------------------------------
-    | States             | 5                                              |
-    | Transitions        | 11                                             |
-    | Inputs             | 4                                              |
-    | Outputs            | 7                                              |
-    | Clock              | i_Clk                     (rising_edge)        |
-    | Power Up State     | s_idle                                         |
-    | Encoding           | automatic                                      |
-    | Implementation     | LUT                                            |
-    -----------------------------------------------------------------------
-    Found finite state machine <FSM_1> for signal <est_actual>.
+WARNING:Xst:653 - Signal <dat> is used but never assigned. This sourceless signal will be automatically connected to value 0110000.
+WARNING:Xst:646 - Signal <crcout> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found finite state machine <FSM_0> for signal <est_actual>.
     -----------------------------------------------------------------------
     | States             | 6                                              |
     | Transitions        | 8                                              |
@@ -160,30 +150,52 @@ WARNING:Xst:653 - Signal <lcu> is used but never assigned. This sourceless signa
     | Encoding           | automatic                                      |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
+    Found finite state machine <FSM_1> for signal <r_SM_Act_State>.
+    -----------------------------------------------------------------------
+    | States             | 5                                              |
+    | Transitions        | 11                                             |
+    | Inputs             | 4                                              |
+    | Outputs            | 7                                              |
+    | Clock              | i_Clk                     (rising_edge)        |
+    | Power Up State     | s_idle                                         |
+    | Encoding           | automatic                                      |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 8-bit subtractor for signal <$sub0000> created at line 274.
     Found 8-bit register for signal <contador>.
-    Found 8-bit adder for signal <contador$addsub0000> created at line 208.
+    Found 8-bit adder for signal <contador$addsub0000> created at line 217.
+    Found 32-bit up counter for signal <counter1>.
+    Found 1-bit register for signal <crc_ini>.
+    Found 16-bit register for signal <crc_temp>.
+    Found 1-bit xor2 for signal <crc_temp_0$xor0000> created at line 274.
+    Found 1-bit xor2 for signal <crc_temp_15$xor0000> created at line 289.
+    Found 1-bit xor2 for signal <crc_temp_2$xor0000> created at line 276.
     Found 1-bit register for signal <crcm>.
     Found 8-bit register for signal <data>.
-    Found 2088-bit register for signal <Data_in>.
-    Found 8-bit comparator less for signal <est_actual$cmp_lt0000> created at line 212.
+    Found 80-bit register for signal <Data_crc>.
+    Found 80-bit register for signal <Data_in>.
+    Found 80-bit register for signal <Data_out>.
+    Found 32-bit subtractor for signal <Data_out$addsub0000> created at line 274.
+    Found 1-bit 80-to-1 multiplexer for signal <Data_out$mux0000> created at line 274.
+    Found 8-bit comparator less for signal <est_actual$cmp_lt0000> created at line 221.
     Found 8-bit up counter for signal <idt>.
     Found 3-bit register for signal <r_Bit_Index>.
-    Found 3-bit adder for signal <r_Bit_Index$addsub0000> created at line 141.
+    Found 3-bit adder for signal <r_Bit_Index$addsub0000> created at line 150.
     Found 13-bit register for signal <r_Clk_Count>.
-    Found 13-bit adder for signal <r_Clk_Count$share0000> created at line 102.
+    Found 13-bit adder for signal <r_Clk_Count$share0000> created at line 111.
     Found 8-bit register for signal <r_RX_Byte>.
     Found 1-bit register for signal <r_RX_Data>.
     Found 1-bit register for signal <r_RX_Data_R>.
     Found 1-bit register for signal <r_RX_DV>.
-    Found 13-bit comparator less for signal <r_SM_Act_State$cmp_lt0000> created at line 132.
-    Found 3-bit comparator less for signal <r_SM_Act_State$cmp_lt0001> created at line 140.
-INFO:Xst:738 - HDL ADVISOR - 2088 flip-flops were inferred for signal <Data_in>. You may be trying to describe a RAM in a way that is incompatible with block and distributed RAM resources available on Xilinx devices, or with a specific template that is not supported. Please review the Xilinx resources documentation and the XST user manual for coding guidelines. Taking advantage of RAM resources will lead to improved device usage and reduced synthesis time.
+    Found 13-bit comparator less for signal <r_SM_Act_State$cmp_lt0000> created at line 141.
+    Found 3-bit comparator less for signal <r_SM_Act_State$cmp_lt0001> created at line 149.
     Summary:
 	inferred   2 Finite State Machine(s).
-	inferred   1 Counter(s).
-	inferred 2132 D-type flip-flop(s).
-	inferred   3 Adder/Subtractor(s).
+	inferred   2 Counter(s).
+	inferred 301 D-type flip-flop(s).
+	inferred   5 Adder/Subtractor(s).
 	inferred   3 Comparator(s).
+	inferred   1 Multiplexer(s).
 Unit <UART_RX> synthesized.
 
 INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
@@ -192,21 +204,29 @@ INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmet
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 3
+# Adders/Subtractors                                   : 5
  13-bit adder                                          : 1
  3-bit adder                                           : 1
+ 32-bit subtractor                                     : 1
  8-bit adder                                           : 1
-# Counters                                             : 1
+ 8-bit subtractor                                      : 1
+# Counters                                             : 2
+ 32-bit up counter                                     : 1
  8-bit up counter                                      : 1
-# Registers                                            : 2104
- 1-bit register                                        : 2100
+# Registers                                            : 194
+ 1-bit register                                        : 189
  13-bit register                                       : 1
  3-bit register                                        : 1
  8-bit register                                        : 2
+ 80-bit register                                       : 1
 # Comparators                                          : 3
  13-bit comparator less                                : 1
  3-bit comparator less                                 : 1
  8-bit comparator less                                 : 1
+# Multiplexers                                         : 1
+ 1-bit 80-to-1 multiplexer                             : 1
+# Xors                                                 : 3
+ 1-bit xor2                                            : 3
 
 =========================================================================
 
@@ -215,6 +235,17 @@ Macro Statistics
 =========================================================================
 
 Analyzing FSM <FSM_1> for best encoding.
+Optimizing FSM <r_SM_Act_State/FSM> on signal <r_SM_Act_State[1:3]> with gray encoding.
+----------------------------
+ State          | Encoding
+----------------------------
+ s_idle         | 000
+ s_rx_start_bit | 001
+ s_rx_data_bits | 011
+ s_rx_stop_bit  | 010
+ s_cleanup      | 110
+----------------------------
+Analyzing FSM <FSM_0> for best encoding.
 Optimizing FSM <est_actual/FSM> on signal <est_actual[1:6]> with one-hot encoding.
 -------------------------
  State       | Encoding
@@ -226,35 +257,30 @@ Optimizing FSM <est_actual/FSM> on signal <est_actual[1:6]> with one-hot encodin
  limpia      | 100000
  recorre_crc | 010000
 -------------------------
-Analyzing FSM <FSM_0> for best encoding.
-Optimizing FSM <r_SM_Act_State/FSM> on signal <r_SM_Act_State[1:3]> with gray encoding.
-----------------------------
- State          | Encoding
-----------------------------
- s_idle         | 000
- s_rx_start_bit | 001
- s_rx_data_bits | 011
- s_rx_stop_bit  | 010
- s_cleanup      | 110
-----------------------------
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
 # FSMs                                                 : 2
-# Adders/Subtractors                                   : 3
+# Adders/Subtractors                                   : 5
  13-bit adder                                          : 1
  3-bit adder                                           : 1
+ 7-bit subtractor                                      : 2
  8-bit adder                                           : 1
-# Counters                                             : 1
+# Counters                                             : 2
+ 32-bit up counter                                     : 1
  8-bit up counter                                      : 1
-# Registers                                            : 28
- Flip-Flops                                            : 28
+# Registers                                            : 301
+ Flip-Flops                                            : 301
 # Comparators                                          : 3
  13-bit comparator less                                : 1
  3-bit comparator less                                 : 1
  8-bit comparator less                                 : 1
+# Multiplexers                                         : 1
+ 1-bit 80-to-1 multiplexer                             : 1
+# Xors                                                 : 3
+ 1-bit xor2                                            : 3
 
 =========================================================================
 
@@ -266,7 +292,8 @@ Optimizing unit <UART_RX> ...
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block UART_RX, actual ratio is 1.
+Found area constraint ratio of 100 (+ 5) on block UART_RX, actual ratio is 6.
+FlipFlop counter1_4 has been replicated 1 time(s)
 
 Final Macro Processing ...
 
@@ -278,8 +305,8 @@ Unit <UART_RX> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 43
- Flip-Flops                                            : 43
+# Registers                                            : 349
+ Flip-Flops                                            : 349
 # Shift Registers                                      : 1
  2-bit shift register                                  : 1
 
@@ -310,27 +337,31 @@ Design Statistics
 # IOs                              : 11
 
 Cell Usage :
-# BELS                             : 158
+# BELS                             : 626
 #      GND                         : 1
-#      INV                         : 6
-#      LUT1                        : 23
-#      LUT2                        : 11
-#      LUT3                        : 20
+#      INV                         : 10
+#      LUT1                        : 54
+#      LUT2                        : 81
+#      LUT2_D                      : 1
+#      LUT3                        : 128
+#      LUT3_D                      : 5
 #      LUT3_L                      : 1
-#      LUT4                        : 35
+#      LUT4                        : 154
 #      LUT4_D                      : 6
-#      LUT4_L                      : 1
-#      MUXCY                       : 28
-#      MUXF5                       : 4
+#      LUT4_L                      : 24
+#      MUXCY                       : 67
+#      MUXF5                       : 24
+#      MUXF6                       : 10
+#      MUXF7                       : 4
+#      MUXF8                       : 2
 #      VCC                         : 1
-#      XORCY                       : 21
-# FlipFlops/Latches                : 44
-#      FD                          : 18
-#      FDC                         : 5
-#      FDCE                        : 8
-#      FDE                         : 9
+#      XORCY                       : 53
+# FlipFlops/Latches                : 350
+#      FD                          : 19
+#      FDC                         : 85
+#      FDCE                        : 24
+#      FDE                         : 219
 #      FDP                         : 1
-#      FDR                         : 1
 #      FDRS                        : 1
 #      FDS                         : 1
 # Shift Registers                  : 1
@@ -347,10 +378,10 @@ Device utilization summary:
 
 Selected Device : 3s500efg320-5 
 
- Number of Slices:                       55  out of   4656     1%  
- Number of Slice Flip Flops:             44  out of   9312     0%  
- Number of 4 input LUTs:                104  out of   9312     1%  
-    Number used as logic:               103
+ Number of Slices:                      306  out of   4656     6%  
+ Number of Slice Flip Flops:            350  out of   9312     3%  
+ Number of 4 input LUTs:                465  out of   9312     4%  
+    Number used as logic:               464
     Number used as Shift registers:       1
  Number of IOs:                          11
  Number of bonded IOBs:                  11  out of    232     4%  
@@ -377,7 +408,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-i_Clk                              | BUFGP                  | 45    |
+i_Clk                              | BUFGP                  | 351   |
 -----------------------------------+------------------------+-------+
 
 Asynchronous Control Signals Information:
@@ -385,16 +416,16 @@ Asynchronous Control Signals Information:
 -----------------------------------+------------------------+-------+
 Control Signal                     | Buffer(FF name)        | Load  |
 -----------------------------------+------------------------+-------+
-i_Reset                            | IBUF                   | 14    |
+i_Reset                            | IBUF                   | 110   |
 -----------------------------------+------------------------+-------+
 
 Timing Summary:
 ---------------
 Speed Grade: -5
 
-   Minimum period: 6.268ns (Maximum Frequency: 159.546MHz)
-   Minimum input arrival time before clock: 3.762ns
-   Maximum output required time after clock: 4.134ns
+   Minimum period: 6.829ns (Maximum Frequency: 146.439MHz)
+   Minimum input arrival time before clock: 4.534ns
+   Maximum output required time after clock: 4.063ns
    Maximum combinational path delay: No path found
 
 Timing Detail:
@@ -403,80 +434,82 @@ All values displayed in nanoseconds (ns)
 
 =========================================================================
 Timing constraint: Default period analysis for Clock 'i_Clk'
-  Clock period: 6.268ns (frequency: 159.546MHz)
-  Total number of paths / destination ports: 1103 / 56
+  Clock period: 6.829ns (frequency: 146.439MHz)
+  Total number of paths / destination ports: 6478 / 587
 -------------------------------------------------------------------------
-Delay:               6.268ns (Levels of Logic = 5)
-  Source:            r_Clk_Count_11 (FF)
-  Destination:       r_Clk_Count_0 (FF)
+Delay:               6.829ns (Levels of Logic = 7)
+  Source:            counter1_5 (FF)
+  Destination:       crc_temp_2 (FF)
   Source Clock:      i_Clk rising
   Destination Clock: i_Clk rising
 
-  Data Path: r_Clk_Count_11 to r_Clk_Count_0
+  Data Path: counter1_5 to crc_temp_2
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FD:C->Q               4   0.514   0.651  r_Clk_Count_11 (r_Clk_Count_11)
-     LUT4:I0->O            1   0.612   0.426  r_SM_Act_State_cmp_eq000050_SW0 (N36)
-     LUT4_D:I1->LO         1   0.612   0.169  r_SM_Act_State_cmp_eq000050 (N67)
-     LUT2:I1->O            1   0.612   0.360  r_Clk_Count_mux0000<0>2_SW0 (N23)
-     LUT4_D:I3->O         12   0.612   0.820  r_Clk_Count_mux0000<0>2 (N3)
-     LUT4:I3->O            1   0.612   0.000  r_Clk_Count_mux0000<8>1 (r_Clk_Count_mux0000<8>)
-     FD:D                      0.268          r_Clk_Count_4
+     FDE:C->Q              4   0.514   0.568  counter1_5 (counter1_5)
+     LUT2:I1->O           16   0.612   0.879  Msub_Data_out_addsub0000_Madd_xor<5>11 (Data_out_addsub0000<5>)
+     MUXF5:S->O            1   0.641   0.000  Mmux_Data_out_mux0000_11_f5 (Mmux_Data_out_mux0000_11_f5)
+     MUXF6:I1->O           1   0.451   0.000  Mmux_Data_out_mux0000_10_f6 (Mmux_Data_out_mux0000_10_f6)
+     MUXF7:I1->O           1   0.451   0.000  Mmux_Data_out_mux0000_9_f7 (Mmux_Data_out_mux0000_9_f7)
+     MUXF8:I1->O           1   0.451   0.387  Mmux_Data_out_mux0000_8_f8 (Mmux_Data_out_mux0000_8_f8)
+     LUT4_D:I2->O          2   0.612   0.383  Data_out_addsub0000<6>58 (Data_out_addsub0000<6>58)
+     LUT4:I3->O            1   0.612   0.000  crc_temp_2_mux00001 (crc_temp_2_mux0000)
+     FDCE:D                    0.268          crc_temp_2
     ----------------------------------------
-    Total                      6.268ns (3.842ns logic, 2.426ns route)
-                                       (61.3% logic, 38.7% route)
+    Total                      6.829ns (4.612ns logic, 2.217ns route)
+                                       (67.5% logic, 32.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'i_Clk'
-  Total number of paths / destination ports: 10 / 10
+  Total number of paths / destination ports: 204 / 204
 -------------------------------------------------------------------------
-Offset:              3.762ns (Levels of Logic = 2)
+Offset:              4.534ns (Levels of Logic = 2)
   Source:            i_Reset (PAD)
-  Destination:       crcm (FF)
+  Destination:       Data_crc_0 (FF)
   Destination Clock: i_Clk rising
 
-  Data Path: i_Reset to crcm
+  Data Path: i_Reset to Data_crc_0
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            15   1.106   0.864  i_Reset_IBUF (i_Reset_IBUF)
-     INV:I->O              9   0.612   0.697  i_Reset_inv1_INV_0 (i_Reset_inv)
-     FDE:CE                    0.483          crcm
+     IBUF:I->O           115   1.106   1.247  i_Reset_IBUF (i_Reset_IBUF)
+     LUT2:I0->O           80   0.612   1.086  Data_crc_and00001 (Data_crc_and0000)
+     FDE:CE                    0.483          Data_crc_0
     ----------------------------------------
-    Total                      3.762ns (2.201ns logic, 1.561ns route)
-                                       (58.5% logic, 41.5% route)
+    Total                      4.534ns (2.201ns logic, 2.333ns route)
+                                       (48.5% logic, 51.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'i_Clk'
   Total number of paths / destination ports: 8 / 8
 -------------------------------------------------------------------------
-Offset:              4.134ns (Levels of Logic = 1)
-  Source:            idt_7 (FF)
+Offset:              4.063ns (Levels of Logic = 1)
+  Source:            Data_out_7 (FF)
   Destination:       o_RX_Byte<7> (PAD)
   Source Clock:      i_Clk rising
 
-  Data Path: idt_7 to o_RX_Byte<7>
+  Data Path: Data_out_7 to o_RX_Byte<7>
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     FDCE:C->Q             3   0.514   0.451  idt_7 (idt_7)
+     FDE:C->Q              2   0.514   0.380  Data_out_7 (Data_out_7)
      OBUF:I->O                 3.169          o_RX_Byte_7_OBUF (o_RX_Byte<7>)
     ----------------------------------------
-    Total                      4.134ns (3.683ns logic, 0.451ns route)
-                                       (89.1% logic, 10.9% route)
+    Total                      4.063ns (3.683ns logic, 0.380ns route)
+                                       (90.6% logic, 9.4% route)
 
 =========================================================================
 
 
-Total REAL time to Xst completion: 36.00 secs
-Total CPU time to Xst completion: 36.29 secs
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 6.52 secs
  
 --> 
 
-Total memory usage is 601280 kilobytes
+Total memory usage is 383604 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    2 (   0 filtered)
-Number of infos    :    2 (   0 filtered)
+Number of warnings :    3 (   0 filtered)
+Number of infos    :    1 (   0 filtered)
 
