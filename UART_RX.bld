@@ -5,7 +5,7 @@ Command Line: C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\ngdbuild.exe
 -intstyle ise -dd _ngo -nt timestamp -uc IO.ucf -p xc3s500e-fg320-5 UART_RX.ngc
 UART_RX.ngd
 
-Reading NGO file "C:/.Xilinx/uart_test/UART_RX.ngc" ...
+Reading NGO file "C:/.Xilinx/tttBackup/VLCttt/UART_RX.ngc" ...
 Gathering constraint information from source properties...
 Done.
 
@@ -27,10 +27,10 @@ NGDBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:   0
 
-Total memory usage is 204424 kilobytes
+Total memory usage is 203476 kilobytes
 
 Writing NGD file "UART_RX.ngd" ...
-Total REAL time to NGDBUILD completion:  2 sec
-Total CPU time to NGDBUILD completion:   2 sec
+Total REAL time to NGDBUILD completion:  3 sec
+Total CPU time to NGDBUILD completion:   3 sec
 
 Writing NGDBUILD log file "UART_RX.bld"...

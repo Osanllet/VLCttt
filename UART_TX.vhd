@@ -88,6 +88,13 @@ signal counter1 : 			integer := 0; -- Contador de iteraciones
 signal crcout : 				std_logic_vector(15 downto 0);
 signal crc_ini:				std_logic:='0';
 --signal dato:					std_logic:='0';
+
+-- ** Señales OOK
+TYPE estadosOOK is (espera, conteo, envia);
+signal est_OOK_actual	: 	estadosOOK:= espera;
+signal temporal			: 	std_logic;
+signal contador_OOK		: 	integer range 0 to 16666666 := 0;
+SIGNAL r_OOK				:  std_logic:='0';
    
 begin
  
@@ -293,13 +300,49 @@ p_FRAME_COUNT : process (i_Reset, i_Clk, crcm)
 					crcout <= crc_temp;
 					Data_out(15 downto 0) <= unsigned(crc_temp);
 					crc_ini <= '0';
+					r_OOK <= '1';
 				else
 					crcout <= (others => '0');    -- La salida del CRC es cero durante el tiempo de espera de datos o inactividad.
+					r_OOK <= '0';
 				end if;
 			end if;
 		end if;
 	end process;
-	o_RX_Byte <= std_logic_vector(Data_out (7 downto 0));
-
+	--o_RX_Byte <= std_logic_vector(Data_out (7 downto 0));
+	
+	p_OOK : process (i_Reset, i_Clk, r_OOK) 
+	variable	contador2: integer;
+	begin
+		if i_Reset = '1' then
+			est_OOK_actual <= espera;
+		elsif rising_edge(i_Clk) then
+			case est_OOK_actual is
+				when espera =>
+					if r_OOK = '1' then
+						contador2 := long_t-1;
+						est_OOK_actual <= envia;
+					else
+						est_OOK_actual <= espera;
+					end if;
+				when conteo =>
+					o_RX_Byte <= (others => temporal); 
+					if contador2 > 0 then
+						contador2 := contador2 - 1;
+						est_OOK_actual <= envia;
+					else
+						est_OOK_actual <= espera;
+					end if;
+				when envia =>
+					if contador_OOK = 16666666 then
+						temporal <= Data_out(contador2); 
+						contador_OOK <= 0;
+						est_OOK_actual <= conteo; 
+					else
+						contador_OOK <= contador_OOK+1;
+						est_OOK_actual <= envia;
+					end if;
+			end case;
+		end if;
+	end process;
 	
 end rtl;

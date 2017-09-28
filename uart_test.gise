@@ -173,7 +173,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1506387352" xil_pn:in_ck="133319991772487191" xil_pn:name="TRANEXT_xstsynthesize_spartan3e" xil_pn:prop_ck="-6151591583809204125" xil_pn:start_ts="1506387342">
+    <transform xil_pn:end_ts="1506560731" xil_pn:in_ck="133319991772487191" xil_pn:name="TRANEXT_xstsynthesize_spartan3e" xil_pn:prop_ck="-6151591583809204125" xil_pn:start_ts="1506560720">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
@@ -198,7 +198,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1506387358" xil_pn:in_ck="-673285443884401105" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="2621570136233006227" xil_pn:start_ts="1506387352">
+    <transform xil_pn:end_ts="1506560737" xil_pn:in_ck="-673285443884401105" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="2621570136233006227" xil_pn:start_ts="1506560731">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="UART_RX.bld"/>
@@ -207,9 +207,11 @@
       <outfile xil_pn:name="_ngo"/>
       <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
     </transform>
-    <transform xil_pn:end_ts="1506387363" xil_pn:in_ck="-673285443884401104" xil_pn:name="TRANEXT_map_spartan3" xil_pn:prop_ck="-1309755933173654900" xil_pn:start_ts="1506387358">
+    <transform xil_pn:end_ts="1506560742" xil_pn:in_ck="-673285443884401104" xil_pn:name="TRANEXT_map_spartan3" xil_pn:prop_ck="-1309755933173654900" xil_pn:start_ts="1506560737">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="UART_RX.pcf"/>
       <outfile xil_pn:name="UART_RX_map.map"/>
       <outfile xil_pn:name="UART_RX_map.mrp"/>
@@ -220,7 +222,7 @@
       <outfile xil_pn:name="UART_RX_usage.xml"/>
       <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
     </transform>
-    <transform xil_pn:end_ts="1506387381" xil_pn:in_ck="3970335771893474633" xil_pn:name="TRANEXT_par_spartan3" xil_pn:prop_ck="-5563652517805085498" xil_pn:start_ts="1506387363">
+    <transform xil_pn:end_ts="1506560777" xil_pn:in_ck="3970335771893474633" xil_pn:name="TRANEXT_par_spartan3" xil_pn:prop_ck="-5563652517805085498" xil_pn:start_ts="1506560742">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="UART_RX.ncd"/>
@@ -234,7 +236,7 @@
       <outfile xil_pn:name="UART_RX_par.xrpt"/>
       <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
     </transform>
-    <transform xil_pn:end_ts="1506387411" xil_pn:in_ck="133319991694207528" xil_pn:name="TRANEXT_bitFile_spartan3e" xil_pn:prop_ck="-7817169320884990698" xil_pn:start_ts="1506387401">
+    <transform xil_pn:end_ts="1506560983" xil_pn:in_ck="133319991694207528" xil_pn:name="TRANEXT_bitFile_spartan3e" xil_pn:prop_ck="-7817169320884990698" xil_pn:start_ts="1506560973">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="UART_RX.ut"/>
@@ -246,13 +248,11 @@
       <outfile xil_pn:name="webtalk.log"/>
       <outfile xil_pn:name="webtalk_pn.xml"/>
     </transform>
-    <transform xil_pn:end_ts="1506386307" xil_pn:in_ck="183862056879760562" xil_pn:name="TRAN_impactProgrammingTool" xil_pn:prop_ck="1890673188639090495" xil_pn:start_ts="1506386307">
+    <transform xil_pn:end_ts="1506561174" xil_pn:in_ck="183862056879760562" xil_pn:name="TRAN_impactProgrammingTool" xil_pn:prop_ck="1890673188639090495" xil_pn:start_ts="1506561174">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="InputChanged"/>
     </transform>
-    <transform xil_pn:end_ts="1506387381" xil_pn:in_ck="-673285443884401236" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416187" xil_pn:start_ts="1506387378">
+    <transform xil_pn:end_ts="1506560777" xil_pn:in_ck="-673285443884401236" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="445577401284416187" xil_pn:start_ts="1506560774">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="UART_RX.twr"/>
